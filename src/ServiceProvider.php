@@ -11,7 +11,7 @@ use KoperasiIo\KoperasiApi\Client;
  * @version 1.0.0
  * @author  Gustavo Straube
  */
-class KoperasiApiServiceProvider extends ServiceProvider
+class ServiceProvider extends ServiceProvider
 {
 
     /**
@@ -22,7 +22,7 @@ class KoperasiApiServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../../config/koperasi-api.php' => config_path('koperasi-api.php'),
+            __DIR__ . '/../config/koperasi-api.php' => config_path('koperasi-api.php'),
         ]);
     }
 
@@ -33,7 +33,7 @@ class KoperasiApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/koperasi-api.php', 'koperasi-api');
+        $this->mergeConfigFrom(__DIR__ . '/../config/koperasi-api.php', 'koperasi-api');
 
         $this->app->singleton('koperasi-api.config', function ($app) {
             return $this->app['config']['koperasi-api'];

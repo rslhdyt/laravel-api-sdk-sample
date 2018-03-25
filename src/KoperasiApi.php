@@ -3,8 +3,9 @@
 namespace KoperasiIo\KoperasiApi;
 
 use KoperasiIo\KoperasiApi\App\User;
+use KoperasiIo\KoperasiApi\App\Accounting;
 
-class Client 
+class KoperasiApi 
 {
 
     private $baseUrls = [];
@@ -16,9 +17,24 @@ class Client
         $this->parseConfig($config);
     }
 
+    /**
+     * Instance user endpoint
+     * 
+     * @return object
+     */
     public function user()
     {
         return new User($this->baseUrls['user'], $this->tokens['user']);
+    } 
+
+    /**
+     * Instance accounting endpoint
+     * 
+     * @return object
+     */
+    public function user()
+    {
+        return new Accounting($this->baseUrls['accounting'], $this->tokens['accounting']);
     }
 
     private function parseConfig(Array $config)

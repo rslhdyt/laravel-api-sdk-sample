@@ -4,12 +4,6 @@ namespace KoperasiIo\KoperasiApi\App;
 
 use GuzzleHttp\Client as Http;
 
-/**
- * Dummy API implementation.
- *
- * @version 1.0.0
- * @author  Gustavo Straube
- */
 class BaseClient
 {
 

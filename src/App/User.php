@@ -4,26 +4,9 @@ namespace KoperasiIo\KoperasiApi\App;
 
 use GuzzleHttp\Client as Http;
 
-/**
- * Dummy API implementation.
- *
- * @version 1.0.0
- * @author  Gustavo Straube
- */
 class User extends BaseClient
 {
 
-    /**
-     * Crate a new client instance.
-     *
-     * The API uses basic authentication. The username and password are passed 
-     * to the `auth` option of Guzzle HTTP client. This way they don't have to 
-     * be stored inside the class, neither be manually passed to all API 
-     * requests.
-     *
-     * @param string $username The API user username.
-     * @param string $password The API user password.
-     */
     public function __construct($baseUrl, $token)
     {
         $this->http = new Http([
@@ -42,7 +25,7 @@ class User extends BaseClient
      */
     public function getUsers()
     {
-        return $this->call('GET', '/v1/users');
+        return $this->call('GET', 'v1/users');
     }
 
     /**
@@ -52,7 +35,27 @@ class User extends BaseClient
      */
     public function getUser($userId)
     {
-        return $this->call('GET', '/v1/users/' . $userId);
+        return $this->call('GET', 'v1/users/' . $userId);
+    }
+
+    /**
+     * Get list member.
+     *
+     * @return object The member.
+     */
+    public function getMembers()
+    {
+        return $this->call('GET', 'v1/members');
+    }
+
+    /**
+     * Get current API member.
+     *
+     * @return object The member.
+     */
+    public function getMember($memberId)
+    {
+        return $this->call('GET', 'v1/members/' . $memberId);
     }
 
 }
