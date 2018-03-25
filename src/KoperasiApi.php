@@ -32,7 +32,7 @@ class KoperasiApi
      * 
      * @return object
      */
-    public function user()
+    public function accounting()
     {
         return new Accounting($this->baseUrls['accounting'], $this->tokens['accounting']);
     }
