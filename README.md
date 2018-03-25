@@ -7,7 +7,8 @@ repository ini adalah private package SDK API untuk semua aplikasi koperasi.io
 Install via composer
 
 Before install make sure you add repository config for change source package from private repository.
-    
+
+
 ````
 "repositories": [
 {
@@ -16,7 +17,9 @@ Before install make sure you add repository config for change source package fro
     }
 ],
 ````
+
 Install package
+
 
 ````
 composer require "koperasi-io/koperasi-api: 1.*"
@@ -24,22 +27,32 @@ composer require "koperasi-io/koperasi-api: 1.*"
 
 Add service provider to **config/app.php**
 
+
 ````
 KoperasiIo\KoperasiApi\ServiceProvider::class,
 ````
 
+
 Add Facade
+
 
 ````
 KoperasiApi => KoperasiIo\KoperasiApi\Facade::class,
 ````
 
+
 ## Configuration
+
+
 publish config
+
 
 ````
 php artisan publish:vendor --package='KoperasiIo\KoperasiApi\ServiceProvider'
+
 ````
+
+**config/koperasi-api.php**
 
 ````
 <?php
@@ -69,15 +82,19 @@ return [
 ];
 ````
 
-Note:
+
+**Note**:
 Change url of API endpoint if necesary
 
+
 ## Generate Personal Access Client
-Via terminal
+
 
 go to each koperasi.io application manage apis (/settings/apis/client) and create personal access token then put personal access token to config variable
 
+
 ## Usage Example
+
 
 ````
 // get users data from user app
@@ -87,6 +104,7 @@ $users = KoperasiApi::user()->getUsers();
 $members = KoperasiApi::user()->getMembers();
 
 ````
+
 
 ## Todo
 1. setup exception
