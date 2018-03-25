@@ -8,6 +8,11 @@
     "require-dev": {
         "phpunit/phpunit": "^6.5"
     },
+    "autoload": {
+        "psr-4": {
+            "KoperasiIo\\KoperasiApi\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Risal Hidayat",
