@@ -2,7 +2,7 @@
 
 namespace KoperasiIo\KoperasiApi;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use KoperasiIo\KoperasiApi\Client;
 
 /**
@@ -11,7 +11,7 @@ use KoperasiIo\KoperasiApi\Client;
  * @version 1.0.0
  * @author  Gustavo Straube
  */
-class ServiceProvider extends ServiceProvider
+class ServiceProvider extends IlluminateServiceProvider
 {
 
     /**
