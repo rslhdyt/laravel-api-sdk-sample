@@ -3,9 +3,9 @@
 namespace KoperasiIo\KoperasiApi;
 
 use KoperasiIo\KoperasiApi\KoperasiApi;
-use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Facade as IlluminateFacade;
 
-class Facade extends Facade
+class Facade extends IlluminateFacade
 {
     protected static function getFacadeAccessor() 
     { 
