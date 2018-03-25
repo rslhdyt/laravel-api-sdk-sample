@@ -3,7 +3,7 @@
 namespace KoperasiIo\KoperasiApi;
 
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
-use KoperasiIo\KoperasiApi\Client;
+use KoperasiIo\KoperasiApi\KoperasiApi;
 
 /**
  * Service provider to integrate the SDK with Laravel.
@@ -39,10 +39,10 @@ class ServiceProvider extends IlluminateServiceProvider
             return $this->app['config']['koperasi-api'];
         });
 
-        $this->app->singleton(Client::class, function ($app) {
+        $this->app->singleton(KoperasiApi::class, function ($app) {
             $config = $app['koperasi-api.config'];
             
-            return new Client($config);
+            return new KoperasiApi($config);
         });
     }
 
@@ -54,7 +54,7 @@ class ServiceProvider extends IlluminateServiceProvider
     public function provides()
     {
         return [
-            Client::class,
+            KoperasiApi::class,
         ];
     }
 }
