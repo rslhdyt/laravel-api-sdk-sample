@@ -28,4 +28,14 @@ class Accounting extends BaseClient
         return $this->call('POST', 'v1/journals', $data);
     }
 
+    /**
+     * Get all accounts.
+     *
+     * @return object new journal.
+     */
+    public function getAllAccounts()
+    {
+        return $this->call('GET', 'v1/accounts/all');
+    }
+
 }
