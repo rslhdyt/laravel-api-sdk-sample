@@ -19,12 +19,7 @@ class ServiceProvider extends IlluminateServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-        $this->publishes([
-            __DIR__ . '/../config/koperasi-api.php' => config_path('koperasi-api.php'),
-        ]);
-    }
+    public function boot() {}
 
     /**
      * Register the service provider.
@@ -33,14 +28,12 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/koperasi-api.php', 'koperasi-api');
-
-        $this->app->singleton('koperasi-api.config', function ($app) {
-            return $this->app['config']['koperasi-api'];
+        $this->app->singleton('koperasi-io.config', function ($app) {
+            return $this->app['config']['koperasi-io'];
         });
 
         $this->app->singleton(KoperasiApi::class, function ($app) {
-            $config = $app['koperasi-api.config'];
+            $config = $app['koperasi-io.config'];
             
             return new KoperasiApi($config);
         });

@@ -8,13 +8,11 @@ use KoperasiIo\KoperasiApi\App\Accounting;
 class KoperasiApi 
 {
 
-    private $baseUrls = [];
-
-    private $tokens = [];
+    private $config;
 
     public function __construct($config)
     {
-        $this->parseConfig($config);
+        $this->config = $config;
     }
 
     /**
@@ -24,7 +22,9 @@ class KoperasiApi
      */
     public function user()
     {
-        return new User($this->baseUrls['user'], $this->tokens['user']);
+        $userConfig = array_get($this->config, 'user');
+
+        return new User($this->getBaseUrl($userConfig['url']), $userConfig['personal_token']);
     } 
 
     /**
@@ -34,15 +34,16 @@ class KoperasiApi
      */
     public function accounting()
     {
-        return new Accounting($this->baseUrls['accounting'], $this->tokens['accounting']);
+        $accountingConfig = array_get($this->config, 'accounting');
+
+        return new Accounting($this->getBaseUrl($accountingConfig['url']), $accountingConfig['personal_token']);
     }
 
-    private function parseConfig(Array $config)
+    private function getBaseUrl($url)
     {
-        foreach ($config as $key => $value) {
-            $this->baseUrls[$key] = $value['url'];
-            $this->tokens[$key] = $value['token'];
-        }
+        $baseUrl = $url . '/' . $this->config['api_prefix'] . '/';
+
+        return preg_replace('#/+#','/', $baseUrl);
     }
 
 }
