@@ -43,6 +43,16 @@ class User extends BaseClient
      *
      * @return object The member.
      */
+    public function getAllMembers(Array $params = [])
+    {
+        return $this->call('GET', 'v1/members/all', $params);
+    }
+
+    /**
+     * Get list member.
+     *
+     * @return object The member.
+     */
     public function getMembers()
     {
         return $this->call('GET', 'v1/members');
