@@ -6,10 +6,10 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use KoperasiIo\KoperasiApi\KoperasiApi;
 
 /**
- * Service provider to integrate the SDK with Laravel.
+ * Service provider to integrate the Koperasi io API SDK with Laravel.
  *
  * @version 1.0.0
- * @author  Gustavo Straube
+ * @author  Risal Hidayat
  */
 class ServiceProvider extends IlluminateServiceProvider
 {
