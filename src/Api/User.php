@@ -1,10 +1,8 @@
 <?php
 
-namespace KoperasiIo\KoperasiApi\App;
+namespace KoperasiIo\KoperasiApi\Api;
 
-use GuzzleHttp\Client as Http;
-
-class User extends BaseClient
+class User extends AbstractApi
 {
 
     /**
@@ -14,7 +12,7 @@ class User extends BaseClient
      */
     public function getUsers()
     {
-        return $this->call('GET', 'v1/users');
+        return $this->get('v1/user/users');
     }
 
     /**
@@ -24,7 +22,7 @@ class User extends BaseClient
      */
     public function getUser($userId)
     {
-        return $this->call('GET', 'v1/users/' . $userId);
+        return $this->get('v1/user/users/' . $userId);
     }
 
     /**
@@ -34,7 +32,7 @@ class User extends BaseClient
      */
     public function getAllMembers(array $params = [])
     {
-        return $this->call('GET', 'v1/members/all', $params);
+        return $this->get('v1/user/members/all', $params);
     }
 
     /**
@@ -44,7 +42,7 @@ class User extends BaseClient
      */
     public function getMembers()
     {
-        return $this->call('GET', 'v1/members');
+        return $this->get('v1/user/members');
     }
 
     /**
@@ -54,7 +52,6 @@ class User extends BaseClient
      */
     public function getMember($memberId)
     {
-        return $this->call('GET', 'v1/members/' . $memberId);
+        return $this->get('v1/user/members/' . $memberId);
     }
-
 }

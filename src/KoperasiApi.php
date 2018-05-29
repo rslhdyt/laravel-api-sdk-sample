@@ -3,8 +3,8 @@
 namespace KoperasiIo\KoperasiApi;
 
 use GuzzleHttp\Client;
-use KoperasiIo\KoperasiApi\App\User;
-use KoperasiIo\KoperasiApi\App\Accounting;
+use KoperasiIo\KoperasiApi\Api\User;
+use KoperasiIo\KoperasiApi\Api\Accounting;
 
 class KoperasiApi
 {
@@ -14,6 +14,8 @@ class KoperasiApi
     private $http;
 
     private $baseUrl = 'http://user.koperasi.io/';
+
+    private $apiPrefix = 'api';
 
     private $config;
 
@@ -28,6 +30,10 @@ class KoperasiApi
 
         if (isset($config['user']['url'])) {
             $this->setBaseUrl($config['user']['url']);
+        }
+
+        if (isset($config['api_prefix'])) {
+            $this->setApiPrefix($config['api_prefix']);
         }
 
         $this->http = new Client([
@@ -63,9 +69,21 @@ class KoperasiApi
         return $this->http;
     }
 
+    protected function getApiPrefix()
+    {
+        return $this->apiPrefix;
+    }
+
+    protected function setApiPrefix($apiPrefix)
+    {
+        $this->apiPrefix = $apiPrefix;
+
+        return $this;
+    }
+
     protected function getBaseUrl()
     {
-        $baseUrl = $this->baseUrl . '/' . $this->config['api_prefix'];
+        $baseUrl = $this->baseUrl . '/' . $this->getApiPrefix() . '/';
 
         return preg_replace('~(?<!https:|http:)[/\\\\]+~', '/', trim($baseUrl));
     }

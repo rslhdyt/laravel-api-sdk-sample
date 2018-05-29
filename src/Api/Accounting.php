@@ -1,8 +1,6 @@
 <?php
 
-namespace KoperasiIo\KoperasiApi\App;
-
-use GuzzleHttp\Client as Http;
+namespace KoperasiIo\KoperasiApi\Api;
 
 class Accounting extends AbstractApi
 {
@@ -14,7 +12,7 @@ class Accounting extends AbstractApi
      */
     public function addJournal($data)
     {
-        return $this->post('v1/journals', $data);
+        return $this->post('v1/accounting/journals', $data);
     }
 
     /**
@@ -24,6 +22,6 @@ class Accounting extends AbstractApi
      */
     public function getAllAccounts()
     {
-        return $this->get('v1/user/accounts/all');
+        return $this->get('v1/accounting/accounts');
     }
 }
