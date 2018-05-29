@@ -13,7 +13,7 @@ class KoperasiApi
      */
     private $http;
 
-    private $baseUrl = 'http://user.koperasi.io/';
+    private $baseUri = 'http://user.koperasi.io/';
 
     private $apiPrefix = 'api';
 
@@ -37,7 +37,7 @@ class KoperasiApi
         }
 
         $this->http = new Client([
-            'base_url' => $this->getBaseUrl()
+            'base_uri' => $this->getBaseUrl()
         ]);
     }
 
@@ -83,14 +83,14 @@ class KoperasiApi
 
     protected function getBaseUrl()
     {
-        $baseUrl = $this->baseUrl . '/' . $this->getApiPrefix() . '/';
+        $baseUri = $this->baseUri . '/' . $this->getApiPrefix() . '/';
 
-        return preg_replace('~(?<!https:|http:)[/\\\\]+~', '/', trim($baseUrl));
+        return preg_replace('~(?<!https:|http:)[/\\\\]+~', '/', trim($baseUri));
     }
 
-    protected function setBaseUrl($baseUrl)
+    protected function setBaseUrl($baseUri)
     {
-        $this->baseUrl = $baseUrl;
+        $this->baseUri = $baseUri;
 
         return $this;
     }
