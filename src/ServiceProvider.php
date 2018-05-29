@@ -28,10 +28,6 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('koperasi-io.config', function ($app) {
-            return $this->app['config']['koperasi-io'];
-        });
-
         $this->app->singleton(KoperasiApi::class, function ($app) {
             $config = $app['koperasi-io.config'];
             

@@ -7,17 +7,6 @@ use GuzzleHttp\Client as Http;
 class User extends BaseClient
 {
 
-    public function __construct($baseUrl, $token)
-    {
-        $this->http = new Http([
-            'base_uri' => $baseUrl,
-            'headers' => [
-                'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . $token,
-            ]
-        ]);
-    }
-
     /**
      * Get list user.
      *
@@ -43,7 +32,7 @@ class User extends BaseClient
      *
      * @return object The member.
      */
-    public function getAllMembers(Array $params = [])
+    public function getAllMembers(array $params = [])
     {
         return $this->call('GET', 'v1/members/all', $params);
     }

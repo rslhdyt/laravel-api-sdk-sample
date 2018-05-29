@@ -2,48 +2,72 @@
 
 namespace KoperasiIo\KoperasiApi;
 
+use GuzzleHttp\Client;
 use KoperasiIo\KoperasiApi\App\User;
 use KoperasiIo\KoperasiApi\App\Accounting;
 
-class KoperasiApi 
+class KoperasiApi
 {
+    /**
+     * @var Builder
+     */
+    private $http;
 
-    private $config;
+    private $baseUrl = 'http://user.koperasi.io/';
 
-    public function __construct($config)
+    /**
+     * Instantiate a new GitHub client.
+     *
+     * @param Client|null $http
+     */
+    public function __construct($config = [])
     {
-        $this->config = $config;
+        if (isset($config['user']['url'])) {
+            $this->setBaseUrl($config['user']['url']);
+        }
+
+        $this->http = new Client([
+            'base_url' => $this->getBaseUrl()
+        ]);
     }
 
     /**
      * Instance user endpoint
-     * 
+     *
      * @return object
      */
     public function user()
     {
-        $userConfig = array_get($this->config, 'user');
-
-        return new User($this->getBaseUrl($userConfig['url']), $userConfig['personal_token']);
-    } 
+        return new User($this);
+    }
 
     /**
      * Instance accounting endpoint
-     * 
+     *
      * @return object
      */
     public function accounting()
     {
-        $accountingConfig = array_get($this->config, 'accounting');
-
-        return new Accounting($this->getBaseUrl($accountingConfig['url']), $accountingConfig['personal_token']);
+        return new Accounting($this);
     }
 
-    private function getBaseUrl($url)
+    /**
+     * @return HttpMethodsClient
+     */
+    public function getHttpClient()
     {
-        $baseUrl = $url . '/' . $this->config['api_prefix'] . '/';
-
-        return preg_replace('#/+#','/', $baseUrl);
+        return $this->http;
     }
 
+    protected function getBaseUrl()
+    {
+        return $this->baseUrl;
+    }
+
+    protected function setBaseUrl($baseUrl)
+    {
+        $this->baseUrl = $baseUrl;
+
+        return $this;
+    }
 }
