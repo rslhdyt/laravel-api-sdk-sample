@@ -1,6 +1,6 @@
 <?php
 
-namespace KoperasiIo\KoperasiApi\App;
+namespace KoperasiIo\KoperasiApi\Api;
 
 use KoperasiIo\KoperasiApi\KoperasiApi;
 use KoperasiIo\KoperasiApi\ResponseApi;
