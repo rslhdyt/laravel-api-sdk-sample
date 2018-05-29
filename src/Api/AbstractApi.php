@@ -2,6 +2,7 @@
 
 namespace KoperasiIo\KoperasiApi\App;
 
+use KoperasiIo\KoperasiApi\KoperasiApi;
 use KoperasiIo\KoperasiApi\ResponseApi;
 
 abstract class AbstractApi
@@ -10,9 +11,16 @@ abstract class AbstractApi
     protected $client;
 
     /**
-     * @param Client $client
+     * The requested page (GitHub pagination).
+     *
+     * @var null|int
      */
-    public function __construct(Client $client)
+    private $page;
+
+    /**
+     * @param KoperasiApi $client
+     */
+    public function __construct(KoperasiApi $client)
     {
         $this->client = $client;
     }
@@ -32,14 +40,6 @@ abstract class AbstractApi
 
         if (null !== $this->page && !isset($parameters['page'])) {
             $parameters['page'] = $this->page;
-        }
-
-        if (null !== $this->perPage && !isset($parameters['per_page'])) {
-            $parameters['per_page'] = $this->perPage;
-        }
-
-        if (array_key_exists('ref', $parameters) && is_null($parameters['ref'])) {
-            unset($parameters['ref']);
         }
 
         if (count($parameters) > 0) {
