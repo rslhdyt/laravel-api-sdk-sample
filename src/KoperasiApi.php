@@ -15,6 +15,8 @@ class KoperasiApi
 
     private $baseUrl = 'http://user.koperasi.io/';
 
+    private $config;
+
     /**
      * Instantiate a new GitHub client.
      *
@@ -22,6 +24,8 @@ class KoperasiApi
      */
     public function __construct($config = [])
     {
+        $this->config = $config;
+
         if (isset($config['user']['url'])) {
             $this->setBaseUrl($config['user']['url']);
         }
@@ -61,7 +65,9 @@ class KoperasiApi
 
     protected function getBaseUrl()
     {
-        return $this->baseUrl;
+        $baseUrl = $this->baseUrl . '/' . $this->config['api_prefix'];
+
+        return preg_replace('~(?<!https:|http:)[/\\\\]+~', '/', trim($baseUrl));
     }
 
     protected function setBaseUrl($baseUrl)
