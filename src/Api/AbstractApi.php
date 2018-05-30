@@ -66,32 +66,18 @@ abstract class AbstractApi
      */
     protected function post($path, array $parameters = [], array $requestHeaders = [])
     {
-        return $this->postRaw(
-            $path,
-            $this->createJsonBody($parameters),
-            $requestHeaders
-        );
-    }
-
-    /**
-     * Send a POST request with raw data.
-     *
-     * @param string $path           Request path.
-     * @param string $body           Request body.
-     * @param array  $requestHeaders Request headers.
-     *
-     * @return array|string
-     */
-    protected function postRaw($path, $body, array $requestHeaders = [])
-    {
-        $response = $this->client->getHttpClient()->request(
-            'POST',
-            $path,
-            [
-                'json' => $body,
-                'headers' => $requestHeaders
-            ]
-        );
+        try {
+            $response = $this->client->getHttpClient()->request(
+                'POST',
+                $path,
+                [
+                    'json' => $parameters,
+                    'headers' => $requestHeaders
+                ]
+            );
+        } catch (\GuzzleHttp\Exception\ClientException $exception) {
+            $response = $exception->getResponse();
+        }
 
         return ResponseApi::getContent($response);
     }
@@ -107,27 +93,19 @@ abstract class AbstractApi
      */
     protected function put($path, array $parameters = [], array $requestHeaders = [])
     {
-        $response = $this->client->getHttpClient()->request(
-            'PUT',
-            $path,
-            [
-                'json' => $this->createJsonBody($parameters),
-                'headers' => $requestHeaders
-            ]
-        );
+        try {
+            $response = $this->client->getHttpClient()->request(
+                'PUT',
+                $path,
+                [
+                    'json' => $parameters,
+                    'headers' => $requestHeaders
+                ]
+            );
+        } catch (\GuzzleHttp\Exception\ClientException $exception) {
+            $response = $exception->getResponse();
+        }
 
         return ResponseApi::getContent($response);
-    }
-
-    /**
-     * Create a JSON encoded version of an array of parameters.
-     *
-     * @param array $parameters Request parameters
-     *
-     * @return null|string
-     */
-    protected function createJsonBody(array $parameters)
-    {
-        return (count($parameters) === 0) ? null : json_encode($parameters, empty($parameters) ? JSON_FORCE_OBJECT : 0);
     }
 }
