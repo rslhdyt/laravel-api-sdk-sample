@@ -88,7 +88,7 @@ abstract class AbstractApi
             'POST',
             $path,
             [
-                'body' => $body,
+                'json' => $body,
                 'headers' => $requestHeaders
             ]
         );
@@ -111,7 +111,7 @@ abstract class AbstractApi
             'PUT',
             $path,
             [
-                'body' => $this->createJsonBody($parameters),
+                'json' => $this->createJsonBody($parameters),
                 'headers' => $requestHeaders
             ]
         );
