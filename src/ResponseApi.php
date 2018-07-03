@@ -2,6 +2,8 @@
 
 namespace KoperasiIo\KoperasiApi;
 
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class ResponseApi
 {
     public static function getContent($response)
@@ -17,5 +19,17 @@ class ResponseApi
         }
 
         return $body;
+    }
+
+    public static function paginate($responseData)
+    {
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $dataCollection = collect($responseData['data']);
+        $perPage = $responseData['per_page'];
+
+        $currentPageSearchResults = $dataCollection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $paginator = new LengthAwarePaginator($currentPageSearchResults, count($dataCollection), $perPage);
+
+        return $paginator;
     }
 }

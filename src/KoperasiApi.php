@@ -60,6 +60,16 @@ class KoperasiApi
     {
         return new Accounting($this);
     }
+    
+    /**
+     * Instance accounting endpoint
+     *
+     * @return object
+     */
+    public function finance()
+    {
+        return new Finance($this);
+    }
 
     /**
      * @return HttpMethodsClient

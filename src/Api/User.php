@@ -2,9 +2,10 @@
 
 namespace KoperasiIo\KoperasiApi\Api;
 
+use KoperasiIo\KoperasiApi\ResponseApi;
+
 class User extends AbstractApi
 {
-
     /**
      * Get list user.
      *
@@ -38,11 +39,13 @@ class User extends AbstractApi
     /**
      * Get list member.
      *
-     * @return object The member.
+     * @return object LengthAwarePaginator.
      */
-    public function getMembers()
+    public function getMembers(array $params = [])
     {
-        return $this->get('v1/user/members');
+        $response = $this->get('v1/user/members');
+
+        return ResponseApi::paginate($response);
     }
 
     /**
