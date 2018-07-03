@@ -43,9 +43,7 @@ class User extends AbstractApi
      */
     public function getMembers(array $params = [])
     {
-        $response = $this->get('v1/user/members');
-
-        return ResponseApi::paginate($response);
+        return $this->getPaginate('v1/user/members', $params);
     }
 
     /**

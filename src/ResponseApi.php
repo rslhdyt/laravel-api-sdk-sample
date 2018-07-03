@@ -29,6 +29,7 @@ class ResponseApi
 
         $currentPageSearchResults = $dataCollection->all();
         $paginator = new LengthAwarePaginator($currentPageSearchResults, $responseData['total'], $perPage);
+        $paginator->setPath($responseData['path']);
 
         return $paginator;
     }

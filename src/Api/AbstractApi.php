@@ -55,6 +55,13 @@ abstract class AbstractApi
         return ResponseApi::getContent($response);
     }
 
+    protected function getPaginate($path, array $parameters = [], array $requestHeaders = [])
+    {
+        $response = $this->get($path, $parameters, $requestHeaders);
+
+        return ResponseApi::paginate($response);
+    }
+
     /**
      * Send a POST request with JSON-encoded parameters.
      *
