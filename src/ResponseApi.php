@@ -27,8 +27,8 @@ class ResponseApi
         $dataCollection = collect($responseData['data']);
         $perPage = $responseData['per_page'];
 
-        $currentPageSearchResults = $dataCollection->slice(($currentPage - 1) * $perPage, $perPage)->all();
-        $paginator = new LengthAwarePaginator($currentPageSearchResults, count($dataCollection), $perPage);
+        $currentPageSearchResults = $dataCollection->all();
+        $paginator = new LengthAwarePaginator($currentPageSearchResults, $responseData['total'], $perPage);
 
         return $paginator;
     }
