@@ -53,6 +53,10 @@ class User extends AbstractApi
      */
     public function getMember($memberId)
     {
+        if (!empty($memberId)) {
+            throw new \Exception('Member id required', 1);
+        }
+
         return $this->get('v1/user/members/' . $memberId);
     }
 }
