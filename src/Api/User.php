@@ -53,7 +53,7 @@ class User extends AbstractApi
      */
     public function getMember($memberId)
     {
-        if (!empty($memberId)) {
+        if (empty($memberId)) {
             throw new \Exception('Member id required', 1);
         }
 
@@ -68,7 +68,7 @@ class User extends AbstractApi
      */
     public function updateMember($memberId)
     {
-        if (!empty($memberId)) {
+        if (empty($memberId)) {
             throw new \Exception('Member id required', 1);
         }
 
