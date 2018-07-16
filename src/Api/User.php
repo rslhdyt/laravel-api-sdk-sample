@@ -73,7 +73,7 @@ class User extends AbstractApi
             throw new \Exception('Member id required', 1);
         }
 
-        if (!empty($data)) {
+        if (empty($data)) {
             throw new \Exception('Data parameter required', 1);
         }
 
