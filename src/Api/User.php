@@ -59,4 +59,19 @@ class User extends AbstractApi
 
         return $this->get('v1/user/members/' . $memberId);
     }
+    
+    /**
+     * Update member based on member id.
+     *
+     * @param integer $memberId
+     * @return object The member
+     */
+    public function updateMember($memberId)
+    {
+        if (!empty($memberId)) {
+            throw new \Exception('Member id required', 1);
+        }
+
+        return $this->put('v1/user/members/' . $memberId);
+    }
 }
