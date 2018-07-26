@@ -53,7 +53,7 @@ class User extends AbstractApi
      */
     public function getMember($memberId)
     {
-        if (!empty($memberId)) {
+        if (empty($memberId)) {
             throw new \Exception('Member id required', 1);
         }
 
@@ -69,11 +69,11 @@ class User extends AbstractApi
      */
     public function updateMember($memberId, array $data)
     {
-        if (!empty($memberId)) {
+        if (empty($memberId)) {
             throw new \Exception('Member id required', 1);
         }
 
-        if (!empty($data)) {
+        if (empty($data)) {
             throw new \Exception('Data parameter required', 1);
         }
 
