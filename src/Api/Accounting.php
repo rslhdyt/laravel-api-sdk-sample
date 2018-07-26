@@ -22,6 +22,16 @@ class Accounting extends AbstractApi
      */
     public function getAllAccounts()
     {
-        return $this->get('v1/accounting/accounts');
+        return $this->get('v1/accounting/accounts/all');
+    }
+
+    /**
+     * Get all accounts.
+     *
+     * @return object new journal.
+     */
+    public function getAccounts()
+    {
+        return $this->getPaginate('v1/accounting/accounts');
     }
 }
