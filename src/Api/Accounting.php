@@ -34,4 +34,20 @@ class Accounting extends AbstractApi
     {
         return $this->getPaginate('v1/accounting/accounts');
     }
+    
+    /**
+     * Get account based on account id
+     *
+     * @param $accountId
+     * @return array|string
+     * @throws \Exception
+     */
+    public function getAccount($accountId)
+    {
+        if (empty($memberId)) {
+            throw new \Exception('Account id required', 1);
+        }
+    
+        return $this->get('v1/accounting/accounts/' + $accountId);
+    }
 }
