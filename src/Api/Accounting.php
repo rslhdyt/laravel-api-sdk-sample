@@ -48,6 +48,6 @@ class Accounting extends AbstractApi
             throw new \Exception('Account id required', 1);
         }
     
-        return $this->get('v1/accounting/accounts/' + $accountId);
+        return $this->get('v1/accounting/accounts/' . $accountId);
     }
 }
