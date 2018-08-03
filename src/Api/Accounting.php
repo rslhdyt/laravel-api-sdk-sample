@@ -44,7 +44,7 @@ class Accounting extends AbstractApi
      */
     public function getAccount($accountId)
     {
-        if (empty($memberId)) {
+        if (empty($accountId)) {
             throw new \Exception('Account id required', 1);
         }
     
