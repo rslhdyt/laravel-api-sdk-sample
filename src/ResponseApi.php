@@ -25,7 +25,7 @@ class ResponseApi
     {
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $dataCollection = collect($responseData['data']);
-        $perPage = $responseData['per_page'];
+        $perPage = !empty($responseData['per_page']) ? $responseData['per_page'] : $responseData['meta']['per_page'];
 
         $currentPageSearchResults = $dataCollection->all();
         $paginator = new LengthAwarePaginator($currentPageSearchResults, $responseData['total'], $perPage);

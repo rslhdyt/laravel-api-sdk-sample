@@ -4,7 +4,6 @@ namespace KoperasiIo\KoperasiApi\Api;
 
 class Finance extends AbstractApi
 {
-
     /**
      * Initial deposit members.
      *
