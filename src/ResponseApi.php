@@ -27,10 +27,11 @@ class ResponseApi
         $dataCollection = collect($responseData['data']);
         $perPage = !empty($responseData['per_page']) ? $responseData['per_page'] : $responseData['meta']['per_page'];
         $totalPage = !empty($responseData['total']) ? $responseData['total'] : $responseData['meta']['total'];
+        $path = !empty($responseData['path']) ? $responseData['path'] : $responseData['meta']['path'];
 
         $currentPageSearchResults = $dataCollection->all();
         $paginator = new LengthAwarePaginator($currentPageSearchResults, $totalPage, $perPage);
-        $paginator->setPath($responseData['path']);
+        $paginator->setPath($path);
 
         return $paginator;
     }
